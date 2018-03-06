@@ -56,6 +56,7 @@ have_library 'icudata' or abort 'libicudata missing'
 icuconfig = `which icu-config`.chomp
 icuconfig = "#{icu4c}/bin/icu-config" if icuconfig.empty?
 if File.exist?(icuconfig) && `#{icuconfig} --cxxflags`.include?("c++11")
+  $CXXFLAGS ||= ''
   $CXXFLAGS << ' -std=c++11'
 end
 
